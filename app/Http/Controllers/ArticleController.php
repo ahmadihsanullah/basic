@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Article;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ArticleController extends Controller
 {
@@ -14,9 +15,9 @@ class ArticleController extends Controller
         return view('article.index', compact('articles'));
     }
 
-    public function show($title){
+    public function show($slug){
 
-        $article = Article::where('title',$title)->first();
+        $article = Article::where('slug',$slug)->first();
 
         return view('article.single', compact('article'));
     }
@@ -39,6 +40,7 @@ class ArticleController extends Controller
 
         Article::create([
             'title' => $request->title,
+            'slug' => Str::slug($request->title, '-'),
             'subject' => $request->subject,
         ]);
 
@@ -52,6 +54,11 @@ class ArticleController extends Controller
     }
 
     public function update(Request $request, int $id){
+        $validated = $request->validate([
+            'title' => 'required|min:3|max:255',
+            'subject' => 'required|min:3',
+        ]);
+
         Article::find($id)->update([
             'title' => $request->title,
             'subject' => $request->subject,

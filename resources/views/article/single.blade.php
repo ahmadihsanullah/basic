@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>ini artikel: {{ $article->title }}</h1>
+    <h1>ini artikel: {{ $article->w }}</h1>
     <p>ini subject artikel : {{ $article->subject }}</p>
             <a href="/artikel/{{ $article->id }}/edit" class="btn btn-info btn-sm">edit</a>
             <form action="/artikel/{{ $article->id }}" method="POST"
@@ -12,4 +12,7 @@
             </form>
     <a href="/artikel" class="btn btn-info btn-sm text-white">
         << </a>
+
+        @include('layouts.footer')
 @endsection
+
