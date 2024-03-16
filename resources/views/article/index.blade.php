@@ -2,15 +2,21 @@
 
 @section('content')
     <h1>hai ini article</h1>
-    @foreach ($articles as $article)
-        <div class="card mb-1">
-            <div class="card-body">
-                <p><strong>{{$article->title}} </strong></p>
-                <p> {{ $article->subject}}</p>
-                <a href="/artikel/{{$article->id}}/edit" class="btn btn-primary">edit</a>
+    <div class="row">
+        @foreach ($articles as $article)
+        <div class="col-md-4">
+            <div class="card mb-1">
+                <div class="card-body">
+                    <p><strong>{{ ucfirst($article->title)}} </strong></p>
+                    <p> {{ $article->subject}}</p>
+                    <a href="/artikel/{{$article->title}}" class="btn btn-info btn-sm stretched-link">Baca</a>
+                    
+                </div>
             </div>
         </div>
-    @endforeach
+        @endforeach
+    </div>
+       
 
     <div>
         {{$articles->links()}}

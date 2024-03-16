@@ -9,8 +9,8 @@
 </head>
 <body class="container mt-5">
     <nav>
-        <a href="/artikel">artikel</a>
-        <a href="/artikel/create">new artikel+</a>
+        <a href="/artikel">/Artikel</a>
+        <a href="/artikel/create">/New artikel+</a>
     </nav>
     <main>
         @yield('content')
